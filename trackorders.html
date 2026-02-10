@@ -1,45 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dynamex Freight - Track Orders</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamex Freight — Track Shipment</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pure HTML + Tailwind CSS — no JavaScript */
+    html { scroll-behavior: smooth; }
+    .pulse-slow { animation: pulse 2.5s cubic-bezier(.4,0,.6,1) infinite; }
+    .timeline-dot { width: 12px; height: 12px; border-radius: 9999px; }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      backdrop-filter: blur(6px);
+    }
+    /* small clamp for descriptions */
+    .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
 </head>
-<body>
+<body class="antialiased bg-gray-50 text-gray-800">
+
+  <!-- Top Info Bar -->
+  <div class="bg-red-600 text-white text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+      <div>3rd Floor, Panari Towers, Nairobi</div>
+      <div>dynamexfreights@ke.co | +254 739 365 064</div>
+    </div>
+  </div>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white shadow">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
-      <div class="flex items-center space-x-4">
-        <h1 class="text-xl font-bold text-red-600">Dynamax Freight.</h1>
+  <header class="bg-white shadow sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">D</div>
+        <h1 class="text-lg font-bold text-red-600">Dynamex Freight</h1>
       </div>
 
-      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-        <a href="index.html" class="text-red-600">Home</a>
-        <a href="about.html" class="hover:text-red-600">About Us</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="hover:text-red-600">Home</a>
+        <a href="about.html" class="hover:text-red-600">About</a>
         <a href="services.html" class="hover:text-red-600">Services</a>
         <a href="news.html" class="hover:text-red-600">News</a>
-        <a href="trackorders.html" class="px-4 py-2 rounded-full border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition">Track orders →</a>
-        <a href="shppingrateestimator.html" class="px-4 py-2 rounded-full border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition">Shipping rate estimator</a>
+        <a href="rate.html" class="px-3 py-2 rounded-full border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition">Estimate</a>
       </nav>
 
-     
-      <div class="md:hidden text-sm">
-        <a href="trackorders.html" class="px-3 py-2 rounded-full border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition">Track</a>
+      <div class="md:hidden">
+        <a href="rate.html" class="px-3 py-2 rounded-full border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition text-sm">Estimate</a>
       </div>
     </div>
   </header>
 
-  <section class="container mx-auto py-10 px-6">
-    <h1 class="text-3xl font-bold mb-4">Track Your Shipment</h1>
-    <form class="space-y-4">
-      <input type="text" placeholder="Enter Tracking Number" class="w-full border p-3 rounded">
-      <button type="submit" class="bg-yellow-500 px-6 py-2 rounded text-white hover:bg-yellow-600">Track</button>
-    </form>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Track Your Shipment</h2>
+        <p class="text-gray-600 max-w-xl">Enter your tracking number to see the latest status, location updates, and estimated delivery. For detailed support, contact our operations team.</p>
+
+        <!-- Search / Tracking Input -->
+        <form class="mt-6 w-full max-w-xl">
+          <label class="sr-only" for="tracking">Tracking number</label>
+          <div class="flex gap-3">
+            <input id="tracking" name="tracking" type="text" placeholder="Enter tracking number (e.g., DY-123456789)" class="flex-1 px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-200" />
+            <a href="#results" class="inline-flex items-center px-5 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition">Track</a>
+          </div>
+          <div class="mt-3 text-xs text-gray-500">Tip: Tracking numbers are case-insensitive. Use the format shown on your confirmation email.</div>
+        </form>
+
+        <!-- Quick links -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="track.html#results" class="text-sm px-3 py-2 rounded-full border border-gray-200 hover:bg-gray-100">Recent Shipments</a>
+          <a href="contact.html" class="text-sm px-3 py-2 rounded-full border border-gray-200 hover:bg-gray-100">Contact Support</a>
+          <a href="rate.html" class="text-sm px-3 py-2 rounded-full border border-gray-200 hover:bg-gray-100">Estimate Shipping</a>
+        </div>
+      </div>
+
+      <!-- Visual card -->
+      <div class="rounded-2xl overflow-hidden shadow-lg relative">
+        <img src="images/track-hero.jpg" alt="Tracking visual" class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 text-white">
+          <div class="text-sm uppercase tracking-wide bg-yellow-400 text-gray-900 px-3 py-1 rounded-full inline-block">Real-time</div>
+          <h3 class="mt-3 text-xl font-bold">Live status & location updates</h3>
+          <p class="mt-2 text-sm text-gray-100 max-w-xs line-clamp-3">Follow your shipment from pickup to delivery with clear milestones and ETA.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Results (static example) -->
+  <main id="results" class="max-w-7xl mx-auto px-4 py-8">
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- Left: Tracking summary -->
+      <section class="lg:col-span-2 space-y-6">
+        <div class="bg-white rounded-2xl shadow p-6">
+          <div class="flex items-start justify-between gap-6">
+            <div>
+              <div class="text-sm text-gray-500">Tracking Number</div>
+              <div class="text-xl font-bold">DY-123456789</div>
+              <div class="mt-2 text-sm text-gray-600">Service: <span class="font-medium text-gray-800">Express Road Freight</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm text-gray-500">Status</div>
+              <div class="text-lg font-semibold text-green-600">In Transit</div>
+              <div class="mt-2 text-xs text-gray-500">Estimated delivery: <span class="font-medium text-gray-800">Mar 12, 2026</span></div>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
+              <span>Picked up</span>
+              <span>At hub</span>
+              <span>In transit</span>
+              <span>Out for delivery</span>
+              <span>Delivered</span>
+            </div>
+            <div class="relative h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="absolute left-0 top-0 h-2 bg-red-600 rounded-full" style="width:60%"></div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="mt-6">
+            <h4 class="text-sm font-semibold text-gray-700">Shipment Timeline</h4>
+            <ol class="mt-4 space-y-6">
+              <li class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="timeline-dot bg-green-600"></div>
+                  <div class="h-full w-px bg-gray-200"></div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold">Picked up</div>
+                  <div class="text-xs text-gray-500">Mar 05, 2026 — Nairobi Pickup Hub</div>
+                  <div class="text-sm text-gray-600 mt-1">Shipment collected from sender and scanned into the system.</div>
+                </div>
+              </li>
+
+              <li class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="timeline-dot bg-yellow-400"></div>
+                  <div class="h-full w-px bg-gray-200"></div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold">Arrived at sorting hub</div>
+                  <div class="text-xs text-gray-500">Mar 06, 2026 — Mombasa Sorting Hub</div>
+                  <div class="text-sm text-gray-600 mt-1">Containers unloaded and items routed for inland transit.</div>
+                </div>
+              </li>
+
+              <li class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <div class="timeline-dot bg-red-500 pulse-slow"></div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold">In transit</div>
+                  <div class="text-xs text-gray-500">Mar 08, 2026 — On route to Nairobi</div>
+                  <div class="text-sm text-gray-600 mt-1">Estimated arrival at regional hub in 1–2 days.</div>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- Documents / Actions -->
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#" class="inline-block px-4 py-2 rounded-md border border-gray-200 hover:bg-gray-100 text-sm">Download POD</a>
+            <a href="#" class="inline-block px-4 py-2 rounded-md border border-gray-200 hover:bg-gray-100 text-sm">Request Proof of Delivery</a>
+            <a href="#" class="inline-block px-4 py-2 rounded-md border border-gray-200 hover:bg-gray-100 text-sm">Report an Issue</a>
+          </div>
+        </div>
+
+        <!-- Recent activity / map placeholder -->
+        <div class="bg-white rounded-2xl shadow p-6">
+          <h4 class="text-sm font-semibold text-gray-700">Recent Activity</h4>
+          <ul class="mt-4 space-y-4 text-sm text-gray-600">
+            <li class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-green-600 mt-2"></div>
+              <div>
+                <div class="font-medium">Scanned at Mombasa Hub</div>
+                <div class="text-xs text-gray-500">Mar 06, 2026 • 09:12</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-yellow-400 mt-2"></div>
+              <div>
+                <div class="font-medium">Loaded onto regional truck</div>
+                <div class="text-xs text-gray-500">Mar 07, 2026 • 18:45</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-red-500 mt-2"></div>
+              <div>
+                <div class="font-medium">Departed Mombasa</div>
+                <div class="text-xs text-gray-500">Mar 08, 2026 • 06:30</div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <div class="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">Map preview (static)</div>
+            <div class="mt-3 text-xs text-gray-500">Map preview is illustrative. Integrate a mapping service for live tracking.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Quick summary & support -->
+      <aside class="space-y-6">
+        <div class="bg-white rounded-xl shadow p-6 text-center">
+          <div class="text-sm text-gray-500">Current Location</div>
+          <div class="text-lg font-semibold mt-2">On route to Nairobi</div>
+          <div class="mt-2 text-xs text-gray-500">Last scanned: Mar 08, 2026 • 06:30</div>
+          <div class="mt-4">
+            <a href="contact.html" class="inline-block bg-red-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-700 transition">Contact Support</a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6">
+          <h5 class="text-sm font-semibold">Shipment Details</h5>
+          <ul class="mt-3 text-sm text-gray-600 space-y-2">
+            <li><span class="font-medium text-gray-800">Pieces:</span> 3</li>
+            <li><span class="font-medium text-gray-800">Weight:</span> 45 kg</li>
+            <li><span class="font-medium text-gray-800">Dimensions:</span> 120 × 80 × 60 cm</li>
+            <li><span class="font-medium text-gray-800">Declared value:</span> KES 120,000</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6">
+          <h5 class="text-sm font-semibold">Help & Resources</h5>
+          <ul class="mt-3 text-sm text-gray-600 space-y-2">
+            <li><a href="#" class="hover:underline">How tracking works</a></li>
+            <li><a href="#" class="hover:underline">Claims & insurance</a></li>
+            <li><a href="#" class="hover:underline">Service terms</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
   <!-- Footer -->
-  <!-- (Paste shared footer code here) -->
+  <footer class="bg-gray-900 text-white mt-12">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-6">
+      <div>
+        <h4 class="font-semibold">Dynamex Freight</h4>
+        <p class="text-sm text-gray-300 mt-2">Reliable logistics across air, sea and road. Fast, compliant and customer-focused.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold">Quick Links</h4>
+        <ul class="mt-2 text-sm text-gray-300 space-y-1">
+          <li><a href="services.html" class="hover:underline">Services</a></li>
+          <li><a href="about.html" class="hover:underline">About</a></li>
+          <li><a href="rate.html" class="hover:underline">Estimate Shipping</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <div class="text-sm text-gray-300 mt-2">
+          <div>3rd Floor, Panari Towers, Nairobi</div>
+          <div class="mt-1">dynamexfreights@ke.co</div>
+          <div class="mt-1">+254 739 365 064</div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-800 text-center py-4 text-sm text-gray-400">© 2026 Dynamex Freight. All Rights Reserved.</div>
+  </footer>
 
 </body>
 </html>
