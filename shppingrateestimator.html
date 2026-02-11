@@ -6,9 +6,9 @@
   <title>Dynamex Freight — Shipping Cost Estimator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Pure HTML + Tailwind CSS — no JavaScript */
+   
     html { scroll-behavior: smooth; }
-    /* Tabs (radio inputs) */
+    
     input[type="radio"].tab { display: none; }
     input[type="radio"].tab + label {
       display: inline-flex;
@@ -25,7 +25,7 @@
       color: white;
     }
 
-    /* Reveal estimate panel using checkbox hack */
+   
     #showEstimate { display: none; }
     .estimate-panel {
       max-height: 0;
@@ -40,17 +40,17 @@
       transform: translateY(0);
     }
 
-    /* small clamp for description */
+    
     .line-clamp-3 { display: -webkit-box; -webkitline-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* subtle focus ring for inputs */
+    
     input[type="text"]:focus, input[type="number"]:focus, select:focus {
       outline: none;
       box-shadow: 0 0 0 4px rgba(239,68,68,0.12);
       border-color: rgba(239,68,68,0.6);
     }
 
-    /* responsive hero image cropping */
+  
     .hero-img { height: 20rem; }
     @media (min-width: 768px) { .hero-img { height: 24rem; } }
     @media (min-width: 1024px) { .hero-img { height: 28rem; } }
@@ -58,7 +58,7 @@
 </head>
 <body class="antialiased bg-gray-50 text-gray-800">
 
-  <!-- Top Info Bar -->
+
   <div class="bg-red-600 text-white text-sm">
     <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
       <div>3rd Floor, Panari Towers, Nairobi</div>
@@ -66,7 +66,7 @@
     </div>
   </div>
 
-  <!-- Header -->
+
   <header class="sticky top-0 z-50 bg-white shadow">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
       <div class="flex items-center space-x-4">
@@ -90,11 +90,11 @@
   </header>
 
 
-  <!-- Main -->
+  
   <main class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid lg:grid-cols-12 gap-8 items-start">
 
-      <!-- Left: Visual + Intro -->
+      
       <section class="lg:col-span-5">
         <div class="rounded-2xl overflow-hidden shadow-2xl relative">
           <img src="images/Customer Care.jpg" alt="Logistics hero" class="w-full object-cover hero-img">
@@ -121,11 +121,11 @@
         </div>
       </section>
 
-      <!-- Right: Estimator (pure HTML/CSS) -->
+     
       <section id="estimator" class="lg:col-span-7">
         <div class="bg-white rounded-2xl shadow-lg p-6">
 
-          <!-- Tabs (radio inputs styled with CSS) -->
+          
           <div class="flex gap-2 bg-gray-100 p-2 rounded-lg mb-4">
             <input class="tab" type="radio" id="tab-national" name="scope" checked>
             <label for="tab-national" class="text-sm">National</label>
@@ -134,7 +134,7 @@
             <label for="tab-international" class="text-sm">International</label>
           </div>
 
-          <!-- Estimator form (visual only) -->
+       
           <form class="space-y-4">
             <div class="grid md:grid-cols-2 gap-4">
               <div>
@@ -196,7 +196,7 @@
               </div>
             </div>
 
-            <!-- Calculate button (checkbox hack reveals estimate panel) -->
+           
             <div class="flex items-center gap-3">
               <input id="showEstimate" type="checkbox" />
               <label for="showEstimate" class="inline-block bg-red-600 text-white px-5 py-3 rounded-full font-semibold cursor-pointer hover:bg-red-700 transition">Calculate</label>
@@ -206,7 +206,7 @@
             <p class="text-xs text-gray-500">Note: This estimator is illustrative. For accurate pricing, submit a quote request or contact sales.</p>
           </form>
 
-          <!-- Estimate panel (revealed by checkbox) -->
+         
           <div class="estimate-panel mt-6 bg-gradient-to-r from-white to-gray-50 rounded-xl p-6 shadow">
             <div class="grid md:grid-cols-2 gap-6 items-start">
               <div>
@@ -241,11 +241,10 @@
               </div>
             </div>
           </div>
-          <!-- end estimate panel -->
+        
 
         </div>
 
-        <!-- Tips -->
         <div class="mt-4 grid md:grid-cols-3 gap-4">
           <div class="bg-white rounded-lg p-4 shadow text-sm">
             <div class="font-semibold text-gray-700">Tip</div>
@@ -264,7 +263,7 @@
     </div>
   </main>
 
-  <!-- Footer -->
+
  <footer class="bg-gray-900 text-white">
     <div class="mx-auto w-full max-w-screen-xl">
      
