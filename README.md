@@ -29,7 +29,7 @@ news.html — Company updates and announcements.
 
 track.html — Shipment tracking interface.
 
-rate.html — Shipping Rate Estimator form.
+shoppingrateestimator.html — Shipping Rate Estimator form.
 
 images/ — Folder for hero and service images.
 
