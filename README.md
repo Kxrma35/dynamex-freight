@@ -31,6 +31,4 @@ track.html — Shipment tracking interface.
 
 shoppingrateestimator.html — Shipping Rate Estimator form.
 
-images/ — Folder for hero and service images.
-
-assets/ — Optional folder for custom CSS or icons.
+images/ — Folder for hero and service image.
