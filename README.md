@@ -29,8 +29,6 @@ news.html — Company updates and announcements.
 
 track.html — Shipment tracking interface.
 
-rate.html — Shipping Rate Estimator form.
+shippingrateestimator.html — Shipping Rate Estimator form.
 
-images/ — Folder for hero and service images.
-
-assets/ — Optional folder for custom CSS or icons.
+images/ — Folder for hero and service image.
