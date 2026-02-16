@@ -1,5 +1,5 @@
 # OVERVIEW
-Dynamex Freights — a clean, responsive static website built with HTML and Tailwind CSS for a student project. The site showcases the company’s logistics capabilities across air, sea, and road freight, includes a shipping rate estimator and tracking interface, and is designed for easy customization and presentation.
+Dynamex Freights — a clean, responsive static website built with HTML and Tailwind CSS. The site showcases the company’s logistics capabilities across air, sea, and road freight, includes a shipping rate estimator and tracking interface, and is designed for easy customization and presentation.
 
 ## Key Features
 Responsive design using Tailwind CSS utilities.
